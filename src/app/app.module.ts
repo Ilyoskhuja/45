@@ -34,7 +34,7 @@ import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { ColorPickerComponent } from "@syncfusion/ej2-angular-inputs";
-import { AppComponent } from "../app.component";
+import { AppComponent } from "./app.component";
 import { enableRipple } from "@syncfusion/ej2-base";
 
 enableRipple(true);
