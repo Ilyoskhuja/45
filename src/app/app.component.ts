@@ -315,6 +315,12 @@ export class AppComponent {
       type: "Multiple",
       mode: "Row"
     };
+    console.log(
+      "listHeaders:",
+      [...this.listHeaders],
+      "listHeadersC:",
+      this.listHeadersC
+    );
     this.treeColumns = this.listHeaders;
     this.formatOptions = { format: "M/d/y hh:mm a", type: "dateTime" };
     this.progressRule = { number: true, min: 0 };
@@ -1237,15 +1243,16 @@ export class AppComponent {
   public saveColumn() {
     if (this.checkNewEdit == "edit") {
       console.log("this.checkNewEdit:", this.checkNewEdit);
-      this.listHeadersC.forEach((a) => {
-        delete a["customAttributes"];
-      });
+
       // var colorP = 'yellow';
       var catched = false;
-      let b = [];
       // myArray.forEach(val => myClonedArray.push(Object.assign({}, val)));
-      this.listHeadersC.forEach((r) => {
+      this.listHeaders.forEach((a) => {
+        delete a["customAttributes"];
+      });
+      this.listHeaders.forEach((r) => {
         if (!catched) {
+          console.log("catched:", catched);
           catched = true;
           var style = document.createElement("style");
           style.type = "text/css";
@@ -1256,25 +1263,32 @@ export class AppComponent {
         }
 
         if (r.field == this.columnField) {
+          console.log("r.field:", r.field, "columnField:", this.columnField);
           r.headerText = this.ColName;
           r.type = this.ColType;
           r.textAlign = this.ColAlign;
           r.minWidth = this.ColMinWidth;
           r["customAttributes"] = { class: "cssClassaa" };
         }
-        b.push(Object.assign({}, r));
       });
-      console.log("------listHeadersC-------:", this.listHeadersC);
+
+      // console.log("------listHeadersC-------:", this.listHeadersC);
       // console.log("this.listHeadersC.map((object) => ({ ...object })) bbbbbbbbbbbbbb:",b);
-      this.treeColumns = [];
-      console.log("tre", this.treeColumns);
+      // this.treeColumns = [];
+      // console.log("tre", this.treeColumns);
       // this.treegrid.refreshColumns();
-      let c = this.listHeadersC.map((object) => ({ ...object }));
-      console.log("------b-------:", b);
-      console.log("------c-------:", c);
+      // let c = [...this.listHeadersC.map((object) => ({ ...object }))];
+      // console.log("------b-------:", b);
+      // console.log("------c-------:", c);
       //  let g=this.listHeadersC;
       //  console.log("g:",g)
-      this.treeColumns = [...c]; //this.listHeadersC;
+
+      // this.treegrid.refreshColumns();
+      this.treeColumns = [];
+      // this.treegrid.refreshColumns();
+
+      this.treeColumns = this.listHeaders;
+      // this.treeColumns = [...c]; //this.listHeadersC;
       console.log("------[this.treeColumns]-------:", this.treeColumns);
 
       this.treegrid.refreshColumns();
@@ -1283,7 +1297,7 @@ export class AppComponent {
     if (this.checkNewEdit == "add") {
       // var column: any = { field: this.ColName, headerText: this.ColName, width: this.ColMinWidth, };
       // this.treeColumns.push(column);
-      this.listHeadersC.forEach((a) => {
+      this.listHeaders.forEach((a) => {
         delete a["customAttributes"];
       });
 
@@ -1293,7 +1307,7 @@ export class AppComponent {
             color:${this.ColFColor};
           }`;
       document.body.append(style);
-      this.listHeadersC.push({
+      this.listHeaders.push({
         field: this.ColName,
         headerText: this.ColName,
         type: this.ColType,
@@ -1306,7 +1320,7 @@ export class AppComponent {
 
       // this.treeColumns = b;
       this.treeColumns = [];
-      this.treeColumns = this.listHeadersC;
+      this.treeColumns = this.listHeaders;
 
       this.textWrap = this.ColChecked;
       this.treegrid.refreshColumns();
@@ -1319,7 +1333,7 @@ export class AppComponent {
     this.ejDialog.hide();
     //  this.hideDialog();
 
-    this.treegrid.refreshColumns();
+    // this.treegrid.refreshColumns();
   }
   public btnclick = function (): void {
     this.ejDialog.hide();
