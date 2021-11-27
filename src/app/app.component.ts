@@ -1274,7 +1274,7 @@ export class AppComponent {
       console.log("------c-------:", c);
       //  let g=this.listHeadersC;
       //  console.log("g:",g)
-      this.treeColumns = c; //this.listHeadersC;
+      this.treeColumns = [...c]; //this.listHeadersC;
       console.log("------[this.treeColumns]-------:", this.treeColumns);
 
       this.textWrap = this.ColChecked;
