@@ -187,7 +187,7 @@ export class AppComponent {
     {
       field: "EndDate",
       headerText: "End Date",
-      format: "yMd",
+      format: "dd/MM/yyyy",
       textAlign: "Right",
       editType: "datepickeredit",
       type: "date"
@@ -241,7 +241,7 @@ export class AppComponent {
     {
       field: "EndDate",
       headerText: "End Date",
-      format: "yMd",
+      format: "dd/MM/yyyy",
       textAlign: "Right",
       editType: "datepickeredit",
       type: "date"
@@ -322,7 +322,7 @@ export class AppComponent {
       this.listHeadersC
     );
     this.treeColumns = this.listHeaders;
-    this.formatOptions = { format: "M/d/y hh:mm a", type: "dateTime" };
+    this.formatOptions = { format: "dd/MM/yyyy hh:mm a", type: "dateTime" };
     this.progressRule = { number: true, min: 0 };
     this.taskidRule = { required: true, number: true };
     this.dateRule = { date: true };
@@ -344,7 +344,7 @@ export class AppComponent {
     //   mode: 'Batch',
     // };
 
-    this.format = { format: "M/d/yyyy", type: "date" };
+    this.format = { format: "dd/MM/yyyy", type: "date" };
 
     this.ddlfields = { text: "name", value: "id" };
     (this.d1data = [
