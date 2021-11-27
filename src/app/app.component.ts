@@ -932,10 +932,9 @@ export class AppComponent {
             // this.treegrid.refresh();
             this.dataManager
               .executeQuery(new Query())
-              .then((e: ReturnOption) => {
-                this.data = e.result.data as object[];
-                this.treegrid.refresh();
-              })
+              .then(
+                (e: ReturnOption) => (this.data = e.result.data as object[])
+              )
               .catch((e) => true);
           });
         this.http
@@ -990,10 +989,9 @@ export class AppComponent {
             console.log("post:------------------2", data);
             this.dataManager
               .executeQuery(new Query())
-              .then((e: ReturnOption) => {
-                this.data = e.result.data as object[];
-                this.treegrid.refresh();
-              })
+              .then(
+                (e: ReturnOption) => (this.data = e.result.data as object[])
+              )
               .catch((e) => true);
           });
         this.dataManager
@@ -1049,10 +1047,9 @@ export class AppComponent {
               .subscribe((data) => {
                 this.dataManager
                   .executeQuery(new Query())
-                  .then((e: ReturnOption) => {
-                    this.data = e.result.data as object[];
-                    this.treegrid.refresh();
-                  })
+                  .then(
+                    (e: ReturnOption) => (this.data = e.result.data as object[])
+                  )
                   .catch((e) => true);
               });
           });
@@ -1095,10 +1092,9 @@ export class AppComponent {
             console.log("post:------------------4", data);
             this.dataManager
               .executeQuery(new Query())
-              .then((e: ReturnOption) => {
-                this.data = e.result.data as object[];
-                this.treegrid.refresh();
-              })
+              .then(
+                (e: ReturnOption) => (this.data = e.result.data as object[])
+              )
               .catch((e) => true);
           });
 
