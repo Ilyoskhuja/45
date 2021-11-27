@@ -933,7 +933,10 @@ export class AppComponent {
             this.dataManager
               .executeQuery(new Query())
               .then(
-                (e: ReturnOption) => (this.data = e.result.data as object[])
+                (e: ReturnOption) => (
+                  (this.data = e.result.data as object[]),
+                  this.treegrid.refresh()
+                )
               )
               .catch((e) => true);
           });
@@ -990,7 +993,10 @@ export class AppComponent {
             this.dataManager
               .executeQuery(new Query())
               .then(
-                (e: ReturnOption) => (this.data = e.result.data as object[])
+                (e: ReturnOption) => (
+                  (this.data = e.result.data as object[]),
+                  this.treegrid.refresh()
+                )
               )
               .catch((e) => true);
           });
@@ -1048,7 +1054,10 @@ export class AppComponent {
                 this.dataManager
                   .executeQuery(new Query())
                   .then(
-                    (e: ReturnOption) => (this.data = e.result.data as object[])
+                    (e: ReturnOption) => (
+                      (this.data = e.result.data as object[]),
+                      this.treegrid.refresh()
+                    )
                   )
                   .catch((e) => true);
               });
@@ -1093,7 +1102,10 @@ export class AppComponent {
             this.dataManager
               .executeQuery(new Query())
               .then(
-                (e: ReturnOption) => (this.data = e.result.data as object[])
+                (e: ReturnOption) => (
+                  (this.data = e.result.data as object[]),
+                  this.treegrid.refresh()
+                )
               )
               .catch((e) => true);
           });
