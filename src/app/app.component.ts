@@ -1300,21 +1300,33 @@ export class AppComponent {
       this.listHeaders.forEach((a) => {
         delete a["customAttributes"];
       });
-
-      var style = document.createElement("style");
-      style.type = "text/css";
-      style.innerHTML = `.e-treegrid .e-headercell.cssClassaa { background-color: ${this.ColBColor}; 
+      if (this.ColBColor !== "" && this.ColFColor !== "") {
+        var style = document.createElement("style");
+        style.type = "text/css";
+        style.innerHTML = `.e-treegrid .e-headercell.cssClassaa${this.ColBColor.charAt(
+          5
+        )} { background-color: ${this.ColBColor}; 
             color:${this.ColFColor};
           }`;
-      document.body.append(style);
-      this.listHeaders.push({
-        field: this.ColName,
-        headerText: this.ColName,
-        type: this.ColType,
-        textAlign: this.ColAlign,
-        minWidth: this.ColMinWidth,
-        customAttributes: { class: "cssClassaa" }
-      });
+        document.body.append(style);
+        this.listHeaders.push({
+          field: this.ColName,
+          headerText: this.ColName,
+          type: this.ColType,
+          textAlign: this.ColAlign,
+          minWidth: this.ColMinWidth,
+          customAttributes: { class: `cssClassaa${this.ColBColor.charAt(5)}` }
+        });
+        console.log("@@@@@@@this.listHeaders:@@@@@@@@@", this.listHeaders);
+      } else {
+        this.listHeaders.push({
+          field: this.ColName,
+          headerText: this.ColName,
+          type: this.ColType,
+          textAlign: this.ColAlign,
+          minWidth: this.ColMinWidth
+        });
+      }
 
       // const b = this.listHeadersC.map((object) => ({ ...object }));
 
