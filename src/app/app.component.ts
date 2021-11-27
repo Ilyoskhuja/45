@@ -1271,6 +1271,7 @@ export class AppComponent {
       // this.treegrid.refreshColumns();
       let c = this.listHeadersC.map((object) => ({ ...object }));
       console.log("------b-------:", b);
+      console.log("------c-------:", c);
       //  let g=this.listHeadersC;
       //  console.log("g:",g)
       this.treeColumns = c; //this.listHeadersC;
