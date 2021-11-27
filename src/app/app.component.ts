@@ -1269,11 +1269,11 @@ export class AppComponent {
       this.treeColumns = [];
       console.log("tre", this.treeColumns);
       // this.treegrid.refreshColumns();
-      // let c=this.listHeadersC.map((object) => ({ ...object }));
+      let c = this.listHeadersC.map((object) => ({ ...object }));
       console.log("------b-------:", b);
       //  let g=this.listHeadersC;
       //  console.log("g:",g)
-      this.treeColumns = [...this.listHeadersC]; //this.listHeadersC;
+      this.treeColumns = c; //this.listHeadersC;
       console.log("------[this.treeColumns]-------:", this.treeColumns);
 
       this.textWrap = this.ColChecked;
