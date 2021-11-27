@@ -1277,8 +1277,8 @@ export class AppComponent {
       this.treeColumns = [...c]; //this.listHeadersC;
       console.log("------[this.treeColumns]-------:", this.treeColumns);
 
-      this.textWrap = this.ColChecked;
       this.treegrid.refreshColumns();
+      this.textWrap = this.ColChecked;
     }
     if (this.checkNewEdit == "add") {
       // var column: any = { field: this.ColName, headerText: this.ColName, width: this.ColMinWidth, };
