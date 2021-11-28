@@ -6,7 +6,9 @@ import {
   SortService,
   EditService,
   ToolbarService,
-  FilterService
+  FilterService,
+  FreezeService,
+  ResizeService
 } from "@syncfusion/ej2-angular-treegrid";
 // SelectionSettingsModel,
 // EditEventArgs,
@@ -16,6 +18,8 @@ import { v4 as uuidv4 } from "uuid";
 import { getValue, isNullOrUndefined } from "@syncfusion/ej2-base";
 import { BeforeOpenCloseEventArgs } from "@syncfusion/ej2-inputs";
 import { DropDownList } from "@syncfusion/ej2-dropdowns";
+
+import { freezeDirection, Column } from "@syncfusion/ej2-grids";
 import { RowDataBoundEventArgs } from "@syncfusion/ej2-grids";
 import { ButtonComponent } from "@syncfusion/ej2-angular-buttons";
 import {
@@ -56,7 +60,9 @@ import { SortEventArgs } from "@syncfusion/ej2-grids";
     ToolbarService,
     EditService,
     FilterService,
-    InfiniteScrollService
+    InfiniteScrollService,
+    FreezeService,
+    ResizeService
   ],
 
   encapsulation: ViewEncapsulation.None,
@@ -440,6 +446,8 @@ export class AppComponent {
         this.dropDownFilter.appendTo("#Duration");
       }
     };
+
+    console.log("treegrid:", this.treegrid);
   }
   closeP(data) {
     console.log("closeP:", data);
@@ -1148,7 +1156,63 @@ export class AppComponent {
       this.filtering = true;
       console.log("this.filtering:", this.filtering);
     } else if (args.item.id === "freeze") {
+      // this.treegrid.frozenColumns = "1";
+      // console.log(
+      //   "this.treegrid.getVisibleColumns():",
+      //   this.treegrid.getVisibleColumns(),
+      //   "args.itemData:",
+      //   args.column.field
+      // );
+      // for (let i = 0; i < this.treegrid.getVisibleColumns().length; i++) {
+      //   console.log(
+      //     "this.treegrid.getVisibleColumns()[i].field:",
+      //     this.treegrid.getVisibleColumns()[i].field
+      //   );
+      //   if (args.column.field == this.treegrid.getVisibleColumns()[i].field) {
+      //     this.treegrid.getVisibleColumns()[i].isFrozen = true;
+      //   }
+      // }
       this.treegrid.frozenColumns = this.columnValue;
+
+      // let columnName: string = this.columnDropDown.value as string;
+      // console.log(
+      //   "this.treegrid.grid.getMovableColumns():",
+      //   this.treegrid.grid.getMovableColumns()
+      // );
+      // // if (this.treegrid.getColumns().length - 1 > this.treegrid.getFrozenColumns()) {
+
+      // for (let i = 0; i < this.treegrid.getVisibleColumns().length; i++) {
+      //   if (args.column.field == this.treegrid.getVisibleColumns()[i].field) {
+      //     this.treegrid.getVisibleColumns()[i].isFrozen = true;
+      //   }
+      // }
+      // this.treegrid.refreshColumns();
+
+      // if (
+      //   mvblColumns.length === 1 &&
+      //   args.column.field === mvblColumns[0].field
+      // ) {
+      // this.alertDialog.show();
+      // this.refresh = false;
+      // this.directionDropDown.value = 'Center';
+      // this.directionDropDown.refresh();
+      // } else {
+      // this.treegrid.grid.getColumnByField(
+      //   args.column.field
+      // ).freeze = "Left" as freezeDirection;
+      // e.value === 'Center' ? undefined : (e.value as freezeDirection);
+      // this.treegrid.refreshColumns();
+      // console.log("-----Else------");
+      // }
+
+      // this.treegrid.grid.getColumnByField(args.column.field).freeze = "Left";
+      // console.log("treegrid:", this.treegrid);
+      // this.treegrid.refreshColumns();
+      // console.log(
+      //   "this.treegrid.grid.getColumnByField(args.column.field).freeze:",
+      //   this.treegrid.grid.getColumnByField(args.column.field).freeze
+      // );
+      // this.treegrid.height='100vh'
     } else if (args.item.id === "rcopy") {
       this.MultiSelect = true;
 
