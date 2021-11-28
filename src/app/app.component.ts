@@ -1172,10 +1172,10 @@ export class AppComponent {
       //     this.treegrid.getVisibleColumns()[i].isFrozen = true;
       //   }
       // }
-      this.treegrid.grid.height = '100vh'; 
+      this.treegrid.grid.height = "1080";
       // this.IScrol = false;
       this.treegrid.frozenColumns = this.columnValue;
-      // this.treegrid.refreshColumns();
+      this.treegrid.refresh();
       // let columnName: string = this.columnDropDown.value as string;
       // console.log(
       //   "this.treegrid.grid.getMovableColumns():",
