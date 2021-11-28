@@ -339,14 +339,17 @@ addColumn
                 name="ColName"
                 required
                 [(ngModel)]="ColName"
+                #ColumnName="ngModel"
               />
               <span class="e-float-line"></span>
               <label class="e-float-text e-label-top" for="name">Name</label>
-              <!-- <div *ngIf="nameval.invalid && (nameval.dirty || nameval.touched)">
-              <div class="e-error" *ngIf="nameval.errors.required">
-                * Enter Column name
+              <div
+                *ngIf="ColumnName.invalid && (ColumnName.dirty || ColumnName.touched)"
+              >
+                <div class="e-error" *ngIf="ColumnName.errors.required">
+                  * Enter Column name
+                </div>
               </div>
-            </div> -->
             </div>
           </div>
 
