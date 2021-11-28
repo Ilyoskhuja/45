@@ -6,9 +6,9 @@ import {
   SortService,
   EditService,
   ToolbarService,
-  FilterService,
-  FreezeService,
-  ResizeService
+  FilterService
+  // FreezeService,
+  // ResizeService
 } from "@syncfusion/ej2-angular-treegrid";
 // SelectionSettingsModel,
 // EditEventArgs,
@@ -19,9 +19,9 @@ import { getValue, isNullOrUndefined } from "@syncfusion/ej2-base";
 import { BeforeOpenCloseEventArgs } from "@syncfusion/ej2-inputs";
 import { DropDownList } from "@syncfusion/ej2-dropdowns";
 
-import { freezeDirection, Column } from "@syncfusion/ej2-grids";
-import { RowDataBoundEventArgs } from "@syncfusion/ej2-grids";
-import { ButtonComponent } from "@syncfusion/ej2-angular-buttons";
+// import { freezeDirection, Column } from "@syncfusion/ej2-grids";
+// import { RowDataBoundEventArgs } from "@syncfusion/ej2-grids";
+// import { ButtonComponent } from "@syncfusion/ej2-angular-buttons";
 import {
   PageService,
   InfiniteScrollService
@@ -60,9 +60,9 @@ import { SortEventArgs } from "@syncfusion/ej2-grids";
     ToolbarService,
     EditService,
     FilterService,
-    InfiniteScrollService,
-    FreezeService,
-    ResizeService
+    InfiniteScrollService
+    // FreezeService,
+    // ResizeService
   ],
 
   encapsulation: ViewEncapsulation.None,
@@ -113,7 +113,7 @@ export class AppComponent {
   ColBColor: string = "";
   checkNewEdit: string;
   public rowIndex: number;
-
+  public IScrol: boolean = true;
   public selectionOptions: SelectionSettingsModel;
 
   public formatOptions: Object;
@@ -1172,8 +1172,10 @@ export class AppComponent {
       //     this.treegrid.getVisibleColumns()[i].isFrozen = true;
       //   }
       // }
+      this.treegrid.grid.height = '100vh'; 
+      // this.IScrol = false;
       this.treegrid.frozenColumns = this.columnValue;
-
+      // this.treegrid.refreshColumns();
       // let columnName: string = this.columnDropDown.value as string;
       // console.log(
       //   "this.treegrid.grid.getMovableColumns():",

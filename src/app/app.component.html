@@ -185,7 +185,7 @@ addColumn
     #treegrid
     [dataSource]="data"
     [treeColumnIndex]="1"
-    [enableInfiniteScrolling]="true"
+    [enableInfiniteScrolling]="IScrol"
     [allowFiltering]="filtering"
     [allowSorting]="sorting"
     [sortSettings]="sortSettings"
@@ -194,7 +194,7 @@ addColumn
     allowReordering="true"
     [allowRowDragAndDrop]="true"
     [editSettings]="editSettings"
-    [allowSelection]="true"
+    [allowSelection]="false"
     [selectionSettings]="selectionOptions"
     [toolbar]="toolbar"
     [pageSettings]="pageSettings"
@@ -211,6 +211,8 @@ addColumn
     (actionComplete)="actionComplete($event)"
     [columns]="treeColumns"
     (rowSelected)="rowSelected($event)"
+    height="100vh"
+    width="100wh"
   >
     <!-- [allowFiltering]="filtering"
     [allowSorting]="sorting"
