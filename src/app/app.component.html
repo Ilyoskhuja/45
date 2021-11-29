@@ -153,6 +153,17 @@
     </button>
     <br />
   </div>
+  <div *ngIf="activeFreeze">
+    <br />
+    <button
+      type="button"
+      style="height: 20px; width: 160px;"
+      (click)="closeP('activeFreeze')"
+    >
+      Remove Freeze
+    </button>
+    <br />
+  </div>
   <!-- <button #btn1 ejs-button cssClass="e-flat" [isToggle]="true"  (click)="clickChange()">Change Header Text</button> -->
 
   <!-- <button ej-button class="e-flat" (click)="delete()">Delete</button>

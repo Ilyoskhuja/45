@@ -280,7 +280,7 @@ export class AppComponent {
   // public flag: any = false;
   public cutRow: any;
   public cutRowBool: boolean = false;
-
+  public activeFreeze: boolean = false;
   // public contextMenuItems: any;
   public treeColumns: any;
   @ViewChild("dropdown1")
@@ -457,6 +457,10 @@ export class AppComponent {
     if (data == "showChooser") this.showChooser = false;
     if (data == "filtering") {
       this.filtering = false;
+    }
+    if (data == "activeFreeze") {
+      this.activeFreeze = false;
+      this.treegrid.frozenColumns = 0;
     }
   }
   // addColumn() {
@@ -1172,9 +1176,11 @@ export class AppComponent {
       //     this.treegrid.getVisibleColumns()[i].isFrozen = true;
       //   }
       // }
+
       this.treegrid.grid.height = "1080";
       // this.IScrol = false;
       this.treegrid.frozenColumns = this.columnValue;
+      this.activeFreeze = true;
       this.treegrid.refresh();
       // let columnName: string = this.columnDropDown.value as string;
       // console.log(
