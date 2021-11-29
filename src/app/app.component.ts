@@ -1299,7 +1299,7 @@ export class AppComponent {
     delay: 0
   };
 
-  public showCloseIcon: boolean = true;
+  public showCloseIcon: boolean = false;
   // Hide the Dialog when click the footer button.
   // public hideDialog: EmitType<object> = () => {
   //   this.ejDialog.hide();
