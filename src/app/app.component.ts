@@ -83,6 +83,13 @@ export class AppComponent {
   @ViewChild("progress")
   public progressM: CheckBoxComponent;
 
+  public tasknamerules: Object;
+  public taskidrules: Object;
+  public startdaterules: Object;
+  public enddaterules: Object;
+  public durationrules: Object;
+  public progressrules: Object;
+
   public sortSettings: Object;
   @ViewChild("Dialog")
   public dialogObj: DialogComponent;
@@ -180,7 +187,9 @@ export class AppComponent {
       field: "TaskName",
       headerText: "Task Name",
       editType: "stringedit",
-      type: "string"
+      type: "string",
+
+      validationRules: "tasknamerules"
     },
     {
       field: "StartDate",
@@ -234,7 +243,8 @@ export class AppComponent {
       field: "TaskName",
       headerText: "Task Name",
       editType: "stringedit",
-      type: "string"
+      type: "string",
+      validationRules: "tasknamerules"
     },
     {
       field: "StartDate",
@@ -304,6 +314,13 @@ export class AppComponent {
   });
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
+    this.tasknamerules = { required: true };
+    this.taskidrules = { required: true };
+    this.startdaterules = { date: true };
+    this.enddaterules = { date: true };
+    this.durationrules = { number: true, min: 0 };
+    this.progressrules = { number: true, min: 0 };
+
     this.pageSettings = { pageSize: 30 };
     // this.initilaizeTarget();
     this.sortSettings = {

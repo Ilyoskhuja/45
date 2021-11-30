@@ -36,7 +36,7 @@
   <div *ngIf="sorting" class="col-lg-3 property-section">
     <div class="property-panel-section">
       <div style="display: flex; justify-content: space-between;">
-        <div class="property-panel-header">Multi-sort Properties</div>
+        <div class="property-panel-header">Multi-sort Properties Enabled</div>
 
         <button
           type="button"
@@ -46,13 +46,16 @@
           X
         </button>
       </div>
-      <table
+      <!-- <table
         id="property"
         class="property-panel-table"
         title="Properties"
         style="width: 100%;"
-      >
-        <tr>
+      > -->
+      <!-- <div *ngFor="let col of treeColumns;">
+          <e-item text="{{col.headerText}}"> </e-item>
+        </div> -->
+      <!-- <tr>
           <td style="width: 70%;">
             <div>
               Task Name
@@ -138,8 +141,8 @@
               ></ejs-checkbox>
             </div>
           </td>
-        </tr>
-      </table>
+        </tr> -->
+      <!-- </table> -->
     </div>
   </div>
   <div *ngIf="filtering">
