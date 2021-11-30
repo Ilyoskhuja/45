@@ -1373,10 +1373,25 @@ export class AppComponent {
         delete a["customAttributes"];
       });
       if (this.ColBColor !== "" && this.ColFColor !== "") {
+        console.log(
+          "this.ColBColor.charAt(5)+this.ColBColor.charAt(4)+this.ColBColor.charAt(3) + this.ColFColor.charAt(3)+this.ColFColor.charAt(4)+this.ColFColor.charAt(5):",
+
+          this.ColBColor.charAt(5) +
+            this.ColBColor.charAt(4) +
+            this.ColBColor.charAt(3) +
+            this.ColFColor.charAt(3) +
+            this.ColFColor.charAt(4) +
+            this.ColFColor.charAt(5)
+        );
         var style = document.createElement("style");
         style.type = "text/css";
         style.innerHTML = `.e-treegrid .e-headercell.cssClassaa${
-          this.ColBColor.charAt(5) + this.ColFColor.charAt(3)
+          this.ColBColor.charAt(5) +
+          this.ColBColor.charAt(4) +
+          this.ColBColor.charAt(3) +
+          this.ColFColor.charAt(3) +
+          this.ColFColor.charAt(4) +
+          this.ColFColor.charAt(5)
         } { background-color: ${this.ColBColor}; 
             color:${this.ColFColor};
           }`;
@@ -1389,7 +1404,12 @@ export class AppComponent {
           minWidth: this.ColMinWidth,
           customAttributes: {
             class: `cssClassaa${
-              this.ColBColor.charAt(5) + this.ColFColor.charAt(3)
+              this.ColBColor.charAt(5) +
+              this.ColBColor.charAt(4) +
+              this.ColBColor.charAt(3) +
+              this.ColFColor.charAt(3) +
+              this.ColFColor.charAt(4) +
+              this.ColFColor.charAt(5)
             }`
           }
         });
