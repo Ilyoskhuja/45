@@ -1375,9 +1375,9 @@ export class AppComponent {
       if (this.ColBColor !== "" && this.ColFColor !== "") {
         var style = document.createElement("style");
         style.type = "text/css";
-        style.innerHTML = `.e-treegrid .e-headercell.cssClassaa${this.ColBColor.charAt(
-          5
-        )} { background-color: ${this.ColBColor}; 
+        style.innerHTML = `.e-treegrid .e-headercell.cssClassaa${
+          this.ColBColor.charAt(5) + this.ColFColor.charAt(3)
+        } { background-color: ${this.ColBColor}; 
             color:${this.ColFColor};
           }`;
         document.body.append(style);
@@ -1387,7 +1387,11 @@ export class AppComponent {
           type: this.ColType,
           textAlign: this.ColAlign,
           minWidth: this.ColMinWidth,
-          customAttributes: { class: `cssClassaa${this.ColBColor.charAt(5)}` }
+          customAttributes: {
+            class: `cssClassaa${
+              this.ColBColor.charAt(5) + this.ColFColor.charAt(3)
+            }`
+          }
         });
         console.log("@@@@@@@this.listHeaders:@@@@@@@@@", this.listHeaders);
       } else {
