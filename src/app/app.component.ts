@@ -17,7 +17,7 @@ import { Treerow } from "./treerow";
 import { v4 as uuidv4 } from "uuid";
 import { getValue, isNullOrUndefined } from "@syncfusion/ej2-base";
 import { BeforeOpenCloseEventArgs } from "@syncfusion/ej2-inputs";
-import { DropDownList } from "@syncfusion/ej2-dropdowns";
+import { DropDownList, ChangeEventArgs } from "@syncfusion/ej2-dropdowns";
 
 // import { freezeDirection, Column } from "@syncfusion/ej2-grids";
 // import { RowDataBoundEventArgs } from "@syncfusion/ej2-grids";
@@ -446,6 +446,7 @@ export class AppComponent {
       },
       write: (args: { element: Element }) => {
         let dataSource: string[] = ["All", "1", "3", "4", "5", "6", "8", "9"];
+        console.log("dataSource:", dataSource);
         this.dropDownFilter = new DropDownList({
           dataSource: dataSource,
           value: "All",
@@ -460,7 +461,8 @@ export class AppComponent {
             }
           }
         });
-        this.dropDownFilter.appendTo("#Duration");
+        this.dropDownFilter.appendTo("#duration");
+        console.log("this.dropDownFilter:", this.dropDownFilter);
       }
     };
 
@@ -1174,6 +1176,7 @@ export class AppComponent {
     } else if (args.item.id === "multiSort") {
       this.sorting = !this.sorting;
     } else if (args.item.id === "filter") {
+      // this.treegrid.refreshColumns();
       this.filtering = true;
       console.log("this.filtering:", this.filtering);
     } else if (args.item.id === "freeze") {
