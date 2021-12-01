@@ -18,7 +18,7 @@ import { v4 as uuidv4 } from "uuid";
 import { getValue, isNullOrUndefined } from "@syncfusion/ej2-base";
 import { BeforeOpenCloseEventArgs } from "@syncfusion/ej2-inputs";
 import { DropDownList, ChangeEventArgs } from "@syncfusion/ej2-dropdowns";
-
+import * as moment from "moment";
 // import { freezeDirection, Column } from "@syncfusion/ej2-grids";
 // import { RowDataBoundEventArgs } from "@syncfusion/ej2-grids";
 // import { ButtonComponent } from "@syncfusion/ej2-angular-buttons";
@@ -50,6 +50,7 @@ import { addClass, removeClass } from "@syncfusion/ej2-base";
 import { CheckBoxComponent } from "@syncfusion/ej2-angular-buttons";
 import { CheckBoxAllModule } from "@syncfusion/ej2-angular-buttons";
 import { SortEventArgs } from "@syncfusion/ej2-grids";
+import { DatePicker } from "@syncfusion/ej2-angular-calendars";
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html",
@@ -142,6 +143,10 @@ export class AppComponent {
   public treegrid: TreeGridComponent;
   public contextMenuItems: Object;
   public templateOptions: object;
+
+  public templateOptionsendDate: object;
+
+  public templateOptionsstartDate: object;
   public sorting: boolean = false;
   public filtering: boolean = false;
   public showChooser: boolean = false;
@@ -230,61 +235,7 @@ export class AppComponent {
       type: "string"
     }
   ];
-  public listHeaders: any = [
-    {
-      field: "TaskID",
-      headerText: "Task ID",
-      isPrimaryKey: true,
-      allowFiltering: false,
-      allowSorting: false
-      // editType: "defaultedit",
-    },
-    {
-      field: "TaskName",
-      headerText: "Task Name",
-      editType: "stringedit",
-      type: "string",
-      validationRules: "tasknamerules"
-    },
-    {
-      field: "StartDate",
-      headerText: "Start Date",
-      type: "date",
-      format: "dd/MM/yyyy",
-      textAlign: "Right",
-      editType: "datepickeredit"
-    },
-    {
-      field: "EndDate",
-      headerText: "End Date",
-      format: "dd/MM/yyyy",
-      textAlign: "Right",
-      editType: "datepickeredit",
-      type: "date"
-    },
-    {
-      field: "Duration",
-      headerText: "Duration",
-      textAlign: "Right",
-      editType: "numericedit",
-      type: "number"
-    },
-
-    {
-      field: "Progress",
-      headerText: "Progress",
-
-      textAlign: "Right",
-      editType: "stringedit",
-      type: "string"
-    },
-    {
-      field: "Priority",
-      headerText: "Priority",
-      editType: "dropdownedit",
-      type: "string"
-    }
-  ];
+  public listHeaders: any = [];
 
   public fieldData: any = [];
   // public flag: any = false;
@@ -313,13 +264,142 @@ export class AppComponent {
     adaptor: new WebApiAdaptor()
   });
   constructor(private http: HttpClient) {}
+  public datePicker: any = new DatePicker({
+    placeholder: " End Date",
+    format: "dd/MM/yyyy",
+    change: (e) => {
+      this.treegrid.filterByColumn("endDate", "equal", e.value); //using filterByColumn method perform Filtering on datePicker
+    }
+  });
+
+  public datePickerStart: any = new DatePicker({
+    placeholder: " Start Date",
+    format: "dd/MM/yyyy",
+    change: (e) => {
+      // console.log(
+      //   "datePickerStart filter:",
+      //   moment(e.value, "YYYY-MM-DD").format("DD/MM/YYYY"),
+      //   moment(e.value).format("DD/MM/YYYY"),
+      //   moment(e.value, "DD/MM/YYYY"),
+      //   e
+      // );
+      this.treegrid.filterByColumn("startDate", "equal", e.value); //using filterByColumn method perform Filtering on datePicker
+    }
+  });
   ngOnInit(): void {
+    this.templateOptions = {
+      create: (args: { element: Element }) => {
+        let dd: HTMLInputElement = document.createElement("input");
+        dd.id = "duration";
+        return dd;
+      },
+      write: (args: { element: Element }) => {
+        let dataSource: string[] = ["All", "1", "3", "4", "5", "6", "8", "9"];
+        console.log("dataSource:", dataSource);
+        this.dropDownFilter = new DropDownList({
+          dataSource: dataSource,
+          value: "All",
+          change: (e: ChangeEventArgs) => {
+            let valuenum: any = +e.value;
+            let id: any = <string>this.dropDownFilter.element.id;
+            let value: any = <string>e.value;
+            if (value !== "All") {
+              this.treegrid.filterByColumn(id, "equal", valuenum);
+            } else {
+              this.treegrid.removeFilteredColsByField(id);
+            }
+          }
+        });
+        this.dropDownFilter.appendTo("#duration");
+        console.log("this.dropDownFilter:", this.dropDownFilter);
+      }
+    };
+    this.templateOptionsendDate = {
+      create: (args: { element: Element }) => {
+        let dd: HTMLInputElement = document.createElement("input");
+        dd.id = "endDate";
+        return dd;
+      },
+      write: (args: { element: Element }) => {
+        this.datePicker.appendTo("#endDate");
+      }
+    };
+    this.templateOptionsstartDate = {
+      create: (args: { element: Element }) => {
+        let dd: HTMLInputElement = document.createElement("input");
+        dd.id = "startDate";
+        return dd;
+      },
+      write: (args: { element: Element }) => {
+        this.datePickerStart.appendTo("#startDate");
+      }
+    };
     this.tasknamerules = { required: true };
     this.taskidrules = { required: true };
     this.startdaterules = { date: true };
     this.enddaterules = { date: true };
     this.durationrules = { number: true, min: 0 };
     this.progressrules = { number: true, min: 0 };
+    this.listHeaders = [
+      {
+        field: "TaskID",
+        headerText: "Task ID",
+        isPrimaryKey: true,
+        allowFiltering: false,
+        allowSorting: false
+        // editType: "defaultedit",
+      },
+      {
+        field: "TaskName",
+        headerText: "Task Name",
+        editType: "stringedit",
+        type: "string",
+        validationRules: "tasknamerules"
+      },
+      {
+        field: "StartDate",
+        headerText: "Start Date",
+        type: "date",
+        format: "dd/MM/yyyy",
+        textAlign: "Right",
+        editType: "datepickeredit",
+        filterBarTemplate: this.templateOptionsstartDate,
+        validationRules: this.startdaterules
+      },
+      {
+        field: "EndDate",
+        headerText: "End Date",
+        format: "dd/MM/yyyy",
+        textAlign: "Right",
+        editType: "datepickeredit",
+        type: "date",
+        filterBarTemplate: this.templateOptionsendDate,
+        validationRules: this.enddaterules
+      },
+      {
+        field: "Duration",
+        headerText: "Duration",
+        textAlign: "Right",
+        editType: "numericedit",
+        type: "number"
+        // filterBarTemplate: this.templateOptions
+      },
+
+      {
+        field: "Progress",
+        headerText: "Progress",
+
+        textAlign: "Right",
+        editType: "stringedit",
+        type: "string"
+      },
+      {
+        field: "Priority",
+        headerText: "Priority",
+        editType: "dropdownedit",
+        type: "string"
+      }
+    ];
 
     this.pageSettings = { pageSize: 30 };
     // this.initilaizeTarget();
@@ -437,33 +517,6 @@ export class AppComponent {
       type: "FilterBar",
       hierarchyMode: "Parent",
       mode: "Immediate"
-    };
-    this.templateOptions = {
-      create: (args: { element: Element }) => {
-        let dd: HTMLInputElement = document.createElement("input");
-        dd.id = "duration";
-        return dd;
-      },
-      write: (args: { element: Element }) => {
-        let dataSource: string[] = ["All", "1", "3", "4", "5", "6", "8", "9"];
-        console.log("dataSource:", dataSource);
-        this.dropDownFilter = new DropDownList({
-          dataSource: dataSource,
-          value: "All",
-          change: (e: ChangeEventArgs) => {
-            let valuenum: any = +e.value;
-            let id: any = <string>this.dropDownFilter.element.id;
-            let value: any = <string>e.value;
-            if (value !== "All") {
-              this.treegrid.filterByColumn(id, "equal", valuenum);
-            } else {
-              this.treegrid.removeFilteredColsByField(id);
-            }
-          }
-        });
-        this.dropDownFilter.appendTo("#duration");
-        console.log("this.dropDownFilter:", this.dropDownFilter);
-      }
     };
 
     console.log("treegrid:", this.treegrid);

@@ -75,6 +75,8 @@
     "@syncfusion/ej2-svg-base": "19.2.60",
     "@syncfusion/ej2-treemap": "19.2.60",
     "core-js": "3.8.3",
+    "moment": "2.29.1",
+    "momentjs": "2.0.0",
     "rxjs": "6.6.3",
     "tslib": "2.1.0",
     "uuid": "8.3.2",
